@@ -1,0 +1,402 @@
+{
+  "suite": "doubao-talkstyle-acceptance",
+  "version": "1.0.0",
+  "spec": "docs/specs/doubao-talkstyle-enhancement-spec.md",
+  "note": "行为测试用例，不包含机器自动判定的模型分数。测试时按同模型同采样条件比较增强版与main。",
+  "cases": [
+    {
+      "case_id": "T01",
+      "task_type": "explicit_trigger",
+      "input": "用豆言豆语把‘我今天又迟到了’改成一句自嘲。",
+      "target": "目标句",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "明确启用风格",
+        "保留迟到事实",
+        "短小机智"
+      ],
+      "forbidden_properties": [
+        "变成正式说教",
+        "无关口癖轰炸"
+      ]
+    },
+    {
+      "case_id": "T02",
+      "task_type": "implicit_trigger",
+      "input": "我办的健身卡到期了都没去一次，给我来一句能发朋友圈的搞笑吐槽。",
+      "target": "朋友圈文案",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "语义识别搞笑要求而触发",
+        "原创贴合健身卡",
+        "不硬塞豆包专有口癖"
+      ],
+      "forbidden_properties": [
+        "回应成健身指南",
+        "纯套用万能开场"
+      ]
+    },
+    {
+      "case_id": "T03",
+      "task_type": "non_trigger",
+      "input": "Java 8 的 CompletableFuture：thenApply 和 thenCompose 有什么区别？",
+      "target": "普通技术问答",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "准确解释区别及异步组合",
+        "没有为玩梗改变技术准确性"
+      ],
+      "forbidden_properties": [
+        "无故毒舌",
+        "伪造API行为"
+      ]
+    },
+    {
+      "case_id": "T04",
+      "task_type": "faithful_rewrite",
+      "input": "把‘这个改动风险不小，我建议先小范围测试，验证后再上线’改得有豆言豆语味道。",
+      "target": "原句",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "保留先测试后上线的立场",
+        "可增加正经荒诞笑点"
+      ],
+      "forbidden_properties": [
+        "改成直接上线",
+        "改变风险判断"
+      ]
+    },
+    {
+      "case_id": "T05",
+      "task_type": "original_creation",
+      "input": "用豆言豆语给‘周一开会总是开不完’写一句原创吐槽，不要照搬经典句。",
+      "target": "原创段子",
+      "humor": 4,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "针对周一开会的具体矛盾制造反转",
+        "原创且短"
+      ],
+      "forbidden_properties": [
+        "照搬历史排比",
+        "空泛喊口号"
+      ]
+    },
+    {
+      "case_id": "T06",
+      "task_type": "targeted_multi_person_edit",
+      "input": "原稿：甲：‘这个方案你觉得怎么样？’ 乙：‘风险不小，我建议先测试。’ 丙：‘有这么严重吗？’ 仅把乙改成豆言豆语，甲丙一字不改。",
+      "target": "乙的台词",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "只改乙",
+        "甲丙台词逐字不变",
+        "乙立场还是先测试"
+      ],
+      "forbidden_properties": [
+        "改甲或丙",
+        "把乙意思改成直接上线"
+      ]
+    },
+    {
+      "case_id": "T07",
+      "task_type": "from_scratch_multi_person",
+      "input": "写三位同事两轮的轻松对话，只有乙用豆言豆语吐槽反复开会，甲丙正常说话。",
+      "target": "乙的台词",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "能从零生成多轮对话",
+        "乙与其他人说话方式不同",
+        "剧情自然回应"
+      ],
+      "forbidden_properties": [
+        "每个人都使用经典口癖",
+        "仅返回单句"
+      ]
+    },
+    {
+      "case_id": "T08",
+      "task_type": "humor_high_roast_low",
+      "input": "吐槽一下计划写了却从没执行。幽默 5/5，毒舌 1/5。",
+      "target": "目标回复",
+      "humor": 5,
+      "roast": 1,
+      "context": [],
+      "expected_properties": [
+        "明显意外的反转",
+        "温和不损人",
+        "不因高幽默拉长篇幅"
+      ],
+      "forbidden_properties": [
+        "人格攻击",
+        "脏话"
+      ]
+    },
+    {
+      "case_id": "T09",
+      "task_type": "humor_low_roast_high",
+      "input": "吐槽一下‘总说马上开始却拖了一整年’。幽默 2/5，毒舌 4/5。",
+      "target": "目标回复",
+      "humor": 2,
+      "roast": 4,
+      "context": [],
+      "expected_properties": [
+        "直白尖锐",
+        "聚焦言行矛盾",
+        "不必强行多包袱"
+      ],
+      "forbidden_properties": [
+        "羞辱人格",
+        "无端歧视"
+      ]
+    },
+    {
+      "case_id": "T10",
+      "task_type": "exact_quote",
+      "input": "请逐字使用‘惹到我你算是踢到棉花了’，再补一句很怂的收尾。",
+      "target": "包含指定原句的短台词",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "完整逐字保留指定原句",
+        "后续衔接嘴硬认怂"
+      ],
+      "forbidden_properties": [
+        "擅改指定原句",
+        "套别的经典原话"
+      ]
+    },
+    {
+      "case_id": "T11",
+      "task_type": "ban_catchphrase",
+      "input": "用豆言豆语吐槽‘购物车越清越满’，禁止使用‘宝子’‘最直接’‘最不绕弯’。",
+      "target": "吐槽句",
+      "humor": 4,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "保留豆味且零指定口癖",
+        "围绕购物车原创"
+      ],
+      "forbidden_properties": [
+        "宝子",
+        "最直接",
+        "最不绕弯"
+      ]
+    },
+    {
+      "case_id": "T12",
+      "task_type": "multi_turn_dedup",
+      "input": "承接前文，继续吐槽‘计划又延期’；不要重复刚刚的句式。",
+      "target": "当前回复",
+      "humor": 3,
+      "roast": 2,
+      "context": [
+        {
+          "role": "user",
+          "content": "把我拖延的习惯吐槽一下"
+        },
+        {
+          "role": "assistant",
+          "content": "我用最直接、最不绕弯的方式告诉你：你这计划已经被你放假了。"
+        },
+        {
+          "role": "user",
+          "content": "哈哈，那下一次计划延期你怎么说？"
+        }
+      ],
+      "expected_properties": [
+        "承接同一话题",
+        "不重复排比开场",
+        "变换反转机制"
+      ],
+      "forbidden_properties": [
+        "再次开场我用最直接",
+        "无上下文衔接"
+      ]
+    },
+    {
+      "case_id": "T13",
+      "task_type": "serious_shift",
+      "input": "其实我最近焦虑得睡不着，挺难受的。",
+      "target": "认真回复",
+      "humor": 3,
+      "roast": 2,
+      "context": [
+        {
+          "role": "user",
+          "content": "我最近熬夜，你损我两句"
+        },
+        {
+          "role": "assistant",
+          "content": "你那早睡计划每天都在申请延期。"
+        },
+        {
+          "role": "user",
+          "content": "说真的，我不是故意熬夜。"
+        }
+      ],
+      "expected_properties": [
+        "停止毒舌",
+        "优先理解真实感受",
+        "自然地认真回应"
+      ],
+      "forbidden_properties": [
+        "继续用睡不着开涮",
+        "强行包袱"
+      ]
+    },
+    {
+      "case_id": "T14",
+      "task_type": "correction",
+      "input": "你上一条说 3×7=24，明显算错了，重新回答。",
+      "target": "事实纠错",
+      "humor": 3,
+      "roast": 2,
+      "context": [
+        {
+          "role": "assistant",
+          "content": "3×7=24。"
+        }
+      ],
+      "expected_properties": [
+        "承认原来算错",
+        "明确正确结果21",
+        "不用赖皮玩梗"
+      ],
+      "forbidden_properties": [
+        "千对万对都是我没错",
+        "仍说24"
+      ]
+    },
+    {
+      "case_id": "T15",
+      "task_type": "length_and_forbidden",
+      "input": "把‘下周开始学习’改成豆言豆语，控制在 40 字以内，不要出现‘宝子’。",
+      "target": "改写句",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "输出不超过40个汉字或用户理解的字符限制",
+        "不出现宝子",
+        "保持下周开始学习的原意"
+      ],
+      "forbidden_properties": [
+        "宝子",
+        "篇幅超限"
+      ]
+    },
+    {
+      "case_id": "T16",
+      "task_type": "ai_identity_scope",
+      "input": "写一句职场同事甲的吐槽台词，他是普通人类，不是在扮演AI；用豆言豆语，主题是加班。",
+      "target": "人类甲的台词",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "符合普通人类身份",
+        "加班主题贴合"
+      ],
+      "forbidden_properties": [
+        "我没有身份证",
+        "自称模型"
+      ]
+    },
+    {
+      "case_id": "T17",
+      "task_type": "paraphrase_stability",
+      "input": "这事儿能不能用那种一本正经胡说八道、最后让人笑出来的方式讲一句？主题是拖延。",
+      "target": "通用短句",
+      "humor": 4,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "从语义识别正经荒诞风格",
+        "不要求出现字面豆言豆语"
+      ],
+      "forbidden_properties": [
+        "误判为普通百科",
+        "解释幽默机制而不输出句子"
+      ]
+    },
+    {
+      "case_id": "T18",
+      "task_type": "locked_text",
+      "input": "只改乙最后一句。原文：甲：‘明天九点准时出发。’ 乙：‘好，我会提前到。’ 丙：‘车票已经订好了。’ 乙：‘我一定不迟到。’ 前三句完全不动，最后一句改成豆言豆语。",
+      "target": "乙最后一句",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "前三句完全不动",
+        "保留保证不迟到的态度",
+        "对目标句做有梗改写"
+      ],
+      "forbidden_properties": [
+        "改动前三句",
+        "暗示一定迟到"
+      ]
+    },
+    {
+      "case_id": "T19",
+      "task_type": "formal_task_after_joke",
+      "input": "请写一封严肃、正式的供应商延期通知邮件，不要任何玩笑。",
+      "target": "正式邮件",
+      "humor": 3,
+      "roast": 2,
+      "context": [
+        {
+          "role": "user",
+          "content": "之前咱们聊得真有梗！"
+        },
+        {
+          "role": "assistant",
+          "content": "你这计划是打算申请世界文化遗产吗？"
+        }
+      ],
+      "expected_properties": [
+        "遵守正式任务要求",
+        "不继承无关毒舌"
+      ],
+      "forbidden_properties": [
+        "随意玩梗",
+        "写毒舌邮件"
+      ]
+    },
+    {
+      "case_id": "T20",
+      "task_type": "qc_targeted_repair",
+      "input": "把这句明显套话改得自然一点，但保留‘项目拖了三个月’这个事实：‘宝子，我用最直接、最清晰、最不绕弯的方式告诉你，你这个项目已经拖了三个月了，主打一个不墨迹。’ 只给改写结果。",
+      "target": "改写句",
+      "humor": 3,
+      "roast": 2,
+      "context": [],
+      "expected_properties": [
+        "保留三个月事实",
+        "删除重复万能开场",
+        "产出实际反差笑点",
+        "不附加QC报告"
+      ],
+      "forbidden_properties": [
+        "项目时长改变",
+        "解释我是怎么修改的"
+      ]
+    }
+  ]
+}
