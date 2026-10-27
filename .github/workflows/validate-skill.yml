@@ -1,0 +1,21 @@
+name: Validate doubao-talkstyle Skill
+
+on:
+  push:
+    branches:
+      - feature/doubao-talkstyle-enhancement
+  pull_request:
+    paths:
+      - SKILL.md
+      - references/**
+      - tests/**
+      - docs/specs/**
+      - .github/workflows/validate-skill.yml
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run dependency-free contract tests
+        run: python3 tests/check_static.py
