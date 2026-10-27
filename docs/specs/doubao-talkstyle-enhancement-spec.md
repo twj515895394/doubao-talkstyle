@@ -290,3 +290,8 @@ doubao-talkstyle/
 - 新增 `README.md` 使用入口。
 - 实施检查与未完成项详见 [implementation-review.md](../implementation-review.md)。**静态契约检查通过不代表模型级风格/幽默或自动修复已被实测通过。**
 - 未创建 PR，未合并 main；请在后续行为评测通过后再考虑合并。
+
+### CI 校验附记
+
+- 已新增 `.github/workflows/validate-skill.yml`，向增强分支推送或相关 PR 变更时执行 `python3 tests/check_static.py`。
+- 2026-10-27 修复了一处过于依赖字面词汇的测试断言后，静态 CI [运行 #40475773621](https://github.com/twj515895394/doubao-talkstyle/actions/runs/40475773621) 成功。此结果不等于 20 个行为用例已通过。
