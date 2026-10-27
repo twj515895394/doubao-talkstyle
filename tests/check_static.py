@@ -30,7 +30,7 @@ check(len(fm) > 2 and "name: doubao-talkstyle" in fm[1] and "description:" in fm
 for p in set(re.findall(r"references/[\w-]+\.md", skill)):
     read(p)
 check(len(set(re.findall(r"references/[\w-]+\.md", skill))) >= 4, "references links incomplete")
-for word in ("默认 3", "默认 2", "智能", "上下文", "定向", "任务忠实度", "不自动触发", "原句"):
+for word in ("默认 3", "默认 2", "智能", "上下文", "只作用于目标内容", "任务忠实度", "不自动触发", "原句"):
     check(word in skill, f"missing skill rule marker: {word}")
 patterns = re.findall(r"(?m)^\d+\. \*\*[^\n]+", lib)
 check(len(patterns) == 21, f"legacy sentence templates not fully preserved: {len(patterns)}")
